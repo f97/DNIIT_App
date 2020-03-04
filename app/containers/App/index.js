@@ -17,11 +17,13 @@ import { Classes } from '@blueprintjs/core';
 import GlobalStyle from '../../global-styles';
 import { AppWrapper } from './styled';
 import Header from '../../components/Header';
+import Nav from '../../components/Nav';
 
 export default function App() {
   return (
     <AppWrapper className={`${Classes.DARK}`}>
       <Header />
+      <Nav />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route component={NotFoundPage} />

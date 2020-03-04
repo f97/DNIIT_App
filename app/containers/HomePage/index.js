@@ -16,18 +16,25 @@ import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import HomeSlide from '../../components/HomeSlide';
+import HomeWidget from '../../components/HomeWidget';
+import { HomeWrapper, HomeHeader } from './styled';
 
 export function HomePage() {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
 
   return (
-    <div>
+    <HomeWrapper>
       <Helmet>
         <title>HomePage</title>
         <meta name="description" content="Description of HomePage" />
       </Helmet>
-    </div>
+      <HomeHeader>
+        <HomeSlide />
+        <HomeWidget />
+      </HomeHeader>
+    </HomeWrapper>
   );
 }
 
