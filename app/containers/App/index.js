@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -25,7 +25,8 @@ export default function App() {
       <Header />
       <Nav />
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/:lang" component={HomePage} />
+        <Redirect to="/en" />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

@@ -4,8 +4,8 @@
  *
  */
 
-import React, { memo } from 'react';
-// import PropTypes from 'prop-types';
+import React, { memo, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
@@ -18,11 +18,19 @@ import reducer from './reducer';
 import saga from './saga';
 import HomeSlide from '../../components/HomeSlide';
 import HomeWidget from '../../components/HomeWidget';
-import { HomeWrapper, HomeHeader } from './styled';
+import ListPost from '../../components/ListPost';
+import { HomeWrapper, HomeHeader, HomeContent } from './styled';
+import { getPostsAction } from './actions';
 
-export function HomePage() {
+const HomePage = (props) => {
+  const { getPosts, match, homePage } = props;
+  const { posts } = homePage;
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
+
+  useEffect(() => {
+    getPosts(match.params.lang);
+  }, []);
 
   return (
     <HomeWrapper>
@@ -34,23 +42,26 @@ export function HomePage() {
         <HomeSlide />
         <HomeWidget />
       </HomeHeader>
+      <HomeContent>
+        {posts.length !== 0 && <ListPost posts={posts} />}
+      </HomeContent>
     </HomeWrapper>
   );
-}
+};
 
 HomePage.propTypes = {
-  // dispatch: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  getPosts: PropTypes.func.isRequired,
+  homePage: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   homePage: makeSelectHomePage(),
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
+const mapDispatchToProps = (dispatch) => ({
+  getPosts: (lang) => dispatch(getPostsAction(lang)),
+});
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 

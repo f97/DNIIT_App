@@ -1,22 +1,20 @@
-// import ApolloClient from 'apollo-boost';
-// import gql from 'graphql-tag';
+import ApolloClient from 'apollo-boost';
+import gql from 'graphql-tag';
+import { capitalize } from '../../helpers/data.hepler';
 
-// const client = new ApolloClient({
-//   uri: 'https://dniit-api.herokuapp.com/admin/api',
-// });
+const client = new ApolloClient({
+  uri: 'https://dniit-api.herokuapp.com/admin/api',
+});
 
-// export default function HomePage() {
-//   client
-//     .query({
-//       query: gql`
-//         {
-//           allCategories {
-//             id
-//             nameEn
-//             slug
-//           }
-//         }
-//       `,
-//     })
-//     .then(result => console.log(result));
-// }
+export const getPostsRequest = ({ lang }) =>
+  client.query({
+    query: gql`
+      {
+        allPosts {
+          title${capitalize(lang)}
+          content${capitalize(lang)}
+          slug
+        }
+      }
+    `,
+  });
