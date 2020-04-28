@@ -4,11 +4,7 @@
  *
  */
 
-import {
-  GET_POST_ACTION,
-  GET_POST_ERROR,
-  GET_POST_SUCCESS,
-} from './constants';
+import { GET_POST_ACTION, GET_POST_ERROR, GET_POST_SUCCESS } from './constants';
 
 export const getPostAction = (lang, id) => ({
   type: GET_POST_ACTION,

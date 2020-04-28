@@ -16,12 +16,11 @@ import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import HomeSlide from '../../components/HomeSlide';
-import HomeWidget from '../../components/HomeWidget';
+// import HomeSlide from '../../components/HomeSlide';
+// import HomeWidget from '../../components/HomeWidget';
 import ListPost from '../../components/ListPost';
-import { HomeWrapper, HomeHeader, HomeContent } from './styled';
+import { HomeWrapper, HomeContent } from './styled';
 import { getPostsAction } from './actions';
-import Pagination from '../../components/Pagination';
 
 const HomePage = (props) => {
   const { getPosts, match, homePage } = props;
@@ -44,7 +43,9 @@ const HomePage = (props) => {
         <HomeWidget />
       </HomeHeader> */}
       <HomeContent>
-        {posts.length !== 0 && <ListPost posts={posts} lang={match.params.lang} />}
+        {posts.length !== 0 && (
+          <ListPost posts={posts} lang={match.params.lang} />
+        )}
       </HomeContent>
     </HomeWrapper>
   );

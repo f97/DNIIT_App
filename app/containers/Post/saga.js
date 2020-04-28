@@ -4,7 +4,6 @@ import { getPostSuccess, getPostError } from './actions';
 import { GET_POST_ACTION } from './constants';
 
 function* getPostFlow({ lang, id }) {
-  console.log("function*getPostFlow -> lang, id", lang, id)
   try {
     const response = yield call(getPostRequest, { lang, id });
     if (response.networkStatus === 7) {
@@ -13,7 +12,6 @@ function* getPostFlow({ lang, id }) {
       yield put(getPostSuccess(response));
     }
   } catch (errors) {
-    console.log("function*getPostFlow -> errors", errors)
     yield put(getPostError(errors));
   }
 }

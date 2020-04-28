@@ -10,7 +10,7 @@ export const getPostsRequest = ({ lang }) =>
   client.query({
     query: gql`
       {
-        allPosts {
+        allPosts(orderBy: "createdAt_DESC") {
           id
           title${capitalize(lang)}
           excerpt${capitalize(lang)}
@@ -21,7 +21,7 @@ export const getPostsRequest = ({ lang }) =>
     `,
   });
 
-export const getPostRequest = ({ lang, id}) =>
+export const getPostRequest = ({ lang, id }) =>
   client.query({
     query: gql`
       {
@@ -31,6 +31,20 @@ export const getPostRequest = ({ lang, id}) =>
           category {
             name${capitalize(lang)}
           }
+          updatedAt
+          createdAt
+        }
+      }
+    `,
+  });
+
+export const getPageRequest = ({ lang, id }) =>
+  client.query({
+    query: gql`
+      {
+        Page(where: { id: "${id}"}) {
+          title${capitalize(lang)}
+          content${capitalize(lang)}
           updatedAt
           createdAt
         }

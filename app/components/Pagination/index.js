@@ -1,23 +1,31 @@
-import React, {useState, useEffect} from 'react';
-import {Button, ButtonGroup, Intent} from '@blueprintjs/core';
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, { useState, useEffect } from 'react';
+import { Button, ButtonGroup, Intent } from '@blueprintjs/core';
 import PropTypes from 'prop-types';
 
-
-const Pagination = ({page, totalPages, onChangePage}) => {
-  console.log("Pagination -> totalPages", totalPages)
+const Pagination = ({ page, totalPages, onChangePage }) => {
   if (totalPages === 1) return null;
+
   const [arrayPages, setArrayPages] = useState([]);
-  useEffect(()=> {
-    if(totalPages < 5) {
-      setArrayPages(Array.from(Array(totalPages).keys()).map(i => i + 1))
+
+  useEffect(() => {
+    if (totalPages < 5) {
+      setArrayPages(Array.from(Array(totalPages).keys()).map((i) => i + 1));
     } else if (page === 1 || page === 2) {
       setArrayPages([1, 2, 3, 4, 5]);
     } else if (page === totalPages || page === totalPages - 1) {
-      setArrayPages([totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages]);
+      setArrayPages([
+        totalPages - 4,
+        totalPages - 3,
+        totalPages - 2,
+        totalPages - 1,
+        totalPages,
+      ]);
     } else {
       setArrayPages([page - 2, page - 1, page, page + 1, page + 2]);
     }
   }, [page]);
+
   return (
     <ButtonGroup className="pagination">
       <Button
@@ -27,7 +35,7 @@ const Pagination = ({page, totalPages, onChangePage}) => {
           onChangePage(1);
         }}
       >
-          First
+        First
       </Button>
       {arrayPages.map((p) => (
         <Button
@@ -48,7 +56,7 @@ const Pagination = ({page, totalPages, onChangePage}) => {
           onChangePage(totalPages);
         }}
       >
-          Last
+        Last
       </Button>
     </ButtonGroup>
   );

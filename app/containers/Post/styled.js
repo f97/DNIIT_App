@@ -11,4 +11,3 @@ export const PostContent = styled.div`
   background: #999;
   color: #444;
 `;
-

@@ -1,14 +1,14 @@
 /*
  *
- * Post reducer
+ * Page reducer
  *
  */
 import produce from 'immer';
-import { GET_POST_ACTION, GET_POST_SUCCESS } from './constants';
+import { GET_PAGE_ACTION, GET_PAGE_SUCCESS } from './constants';
 import { capitalize } from '../../../helpers/data.hepler';
 
 export const initialState = {
-  post: {},
+  page: {},
 };
 
 const convertToCommonpPost = (post, lang) => {
@@ -26,11 +26,11 @@ const convertToCommonpPost = (post, lang) => {
 const postReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
-      case GET_POST_ACTION:
+      case GET_PAGE_ACTION:
         draft.lang = action.lang;
         break;
-      case GET_POST_SUCCESS:
-        draft.post = convertToCommonpPost(action.post, state.lang);
+      case GET_PAGE_SUCCESS:
+        draft.post = convertToCommonpPost(action.page, state.lang);
         break;
     }
   });

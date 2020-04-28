@@ -12,6 +12,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import Post from 'containers/Post/Loadable';
+import Page from 'containers/Page/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import { Classes } from '@blueprintjs/core';
@@ -28,6 +29,7 @@ export default function App() {
       <Switch>
         <Route exact path="/:lang" component={HomePage} />
         <Route exact path="/:lang/:postID" component={Post} />
+        <Route exact path="/:lang/p/:pageID" component={Page} />
         <Redirect to="/vi" />
         <Route component={NotFoundPage} />
       </Switch>
