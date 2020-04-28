@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   ListWrapper,
@@ -14,39 +14,45 @@ import {
   Title,
   Sumary,
 } from './styled';
-// import styled from 'styled-components';
+import Pagination from '../Pagination';
+import { Link } from 'react-router-dom';
 
-function ListPost({ posts }) {
-  console.log('Bug: ListPost -> posts', posts);
+function ListPost({ posts, lang }) {
+  const [page, setPage] = useState(1);
   return (
     <ListWrapper>
-      {posts.map((post) => (
+      {posts.slice((page - 1) * 2, (page - 1) * 2 + 2).map(post => (
         <PostWrapper>
-          <Thumbnail>
-            <img
-              alt={post.title}
-              src="http://ifi.vnu.edu.vn/files/news/2020_04/illustration_3.jpg"
-              width="140"
-              className="img-thumbnail pull-left imghome fix-vcpage-img"
-            ></img>
-          </Thumbnail>
+          {post.thumbnail &&  
+            <Link to={`/${lang}/${post.id}`}>
+              <Thumbnail>
+                <img
+                  alt={post.title}
+                  src={post.thumbnail}
+                  width="140"
+                  className="img-thumbnail pull-left imghome fix-vcpage-img"
+                />
+              </Thumbnail>
+            </Link>
+          }
           <Content>
-            <Title>{post.title}</Title>
+            <Link to={`/${lang}/${post.id}`}><Title>{post.title}</Title></Link>
             <Sumary>
-              Tính đến ngày 6 tháng 4, Bộ Y tế đã xác nhận tổng cộng 241 trường
-              hợp mắc COVID-19. Việt Nam vẫn đang kiểm soát tốt dịch bệnh với 91
-              người nhiễm bệnh đã được chữa khỏi, 150 người đang điều trị và
-              không có trường hợp tử vong nào.
+              {post.excerpt}
             </Sumary>
           </Content>
         </PostWrapper>
       ))}
+        <Pagination page={page} totalPages={Math.ceil(posts.length / 2)} onChangePage={(p)=> {
+          setPage(p)
+        }}/>
     </ListWrapper>
   );
 }
 
 ListPost.propTypes = {
   posts: PropTypes.array,
+  lang: PropTypes.string,
 };
 
 export default memo(ListPost);

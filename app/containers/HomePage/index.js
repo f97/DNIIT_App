@@ -21,6 +21,7 @@ import HomeWidget from '../../components/HomeWidget';
 import ListPost from '../../components/ListPost';
 import { HomeWrapper, HomeHeader, HomeContent } from './styled';
 import { getPostsAction } from './actions';
+import Pagination from '../../components/Pagination';
 
 const HomePage = (props) => {
   const { getPosts, match, homePage } = props;
@@ -38,12 +39,12 @@ const HomePage = (props) => {
         <title>HomePage</title>
         <meta name="description" content="Description of HomePage" />
       </Helmet>
-      <HomeHeader>
+      {/* <HomeHeader>
         <HomeSlide />
         <HomeWidget />
-      </HomeHeader>
+      </HomeHeader> */}
       <HomeContent>
-        {posts.length !== 0 && <ListPost posts={posts} />}
+        {posts.length !== 0 && <ListPost posts={posts} lang={match.params.lang} />}
       </HomeContent>
     </HomeWrapper>
   );

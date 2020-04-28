@@ -11,9 +11,28 @@ export const getPostsRequest = ({ lang }) =>
     query: gql`
       {
         allPosts {
+          id
+          title${capitalize(lang)}
+          excerpt${capitalize(lang)}
+          thumbnail
+          slug
+        }
+      }
+    `,
+  });
+
+export const getPostRequest = ({ lang, id}) =>
+  client.query({
+    query: gql`
+      {
+        Post(where: { id: "${id}"}) {
           title${capitalize(lang)}
           content${capitalize(lang)}
-          slug
+          category {
+            name${capitalize(lang)}
+          }
+          updatedAt
+          createdAt
         }
       }
     `,

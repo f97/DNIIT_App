@@ -1,44 +1,38 @@
 /*
  *
- * HomePage reducer
+ * Post reducer
  *
  */
 import produce from 'immer';
-import { GET_POSTS_SUCCESS, GET_POSTS_ACTION } from './constants';
+import { GET_POST_ACTION, GET_POST_SUCCESS } from './constants';
 import { capitalize } from '../../../helpers/data.hepler';
 
 export const initialState = {
-  posts: [],
-  lang: null,
+  post: {}
 };
 
-const convertToCommonpPost = (posts, lang) => {
-  const commonPosts = posts.map((post) => {
+const convertToCommonpPost = (post, lang) => {
     const newPost = {
       ...post,
       title: post[`title${capitalize(lang)}`],
       content: post[`content${capitalize(lang)}`],
-      excerpt: post[`excerpt${capitalize(lang)}`],
     };
     delete newPost[`title${capitalize(lang)}`];
     delete newPost[`content${capitalize(lang)}`];
-    delete newPost[`excerpt${capitalize(lang)}`];
     return newPost;
-  });
-  return commonPosts;
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const homePageReducer = (state = initialState, action) =>
+const postReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
-      case GET_POSTS_ACTION:
+      case GET_POST_ACTION:
         draft.lang = action.lang;
         break;
-      case GET_POSTS_SUCCESS:
-        draft.posts = convertToCommonpPost(action.posts, state.lang);
+      case GET_POST_SUCCESS:
+        draft.post = convertToCommonpPost(action.post, state.lang);
         break;
     }
   });
 
-export default homePageReducer;
+export default postReducer;

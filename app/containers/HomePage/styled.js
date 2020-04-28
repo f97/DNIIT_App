@@ -7,4 +7,6 @@ export const HomeHeader = styled.div`
 `;
 export const HomeContent = styled.div`
   display: flex;
+  padding: 10px;
+  background: #ffffff;
 `;

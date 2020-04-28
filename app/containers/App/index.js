@@ -11,6 +11,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
+import Post from 'containers/Post/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import { Classes } from '@blueprintjs/core';
@@ -26,7 +27,8 @@ export default function App() {
       <Nav />
       <Switch>
         <Route exact path="/:lang" component={HomePage} />
-        <Redirect to="/en" />
+        <Route exact path="/:lang/:postID" component={Post} />
+        <Redirect to="/vi" />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
