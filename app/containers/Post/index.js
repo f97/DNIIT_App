@@ -14,6 +14,7 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { FacebookProvider, Comments } from 'react-facebook';
+import { Spinner, Intent } from '@blueprintjs/core';
 import makeSelectPost from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -31,7 +32,7 @@ export function Post(props) {
   useInjectSaga({ key: 'post', saga });
 
   const { getPost, match, post: postProp } = props;
-  const { post } = postProp;
+  const { post, requesting } = postProp;
 
   useEffect(() => {
     getPost(match.params.lang, match.params.postID);
@@ -45,23 +46,28 @@ export function Post(props) {
             <title>{post.title}</title>
             <meta name="description" content={post.title} />
           </Helmet>
-          <PostHeader>
-            <PostTitle>{post.title}</PostTitle>
-            <p>{post.updatedAt}</p>
-          </PostHeader>
-          <PostContent>
-            <div
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{
-                __html: post.content,
-              }}
-            ></div>
-          </PostContent>
-          <PostComment>
-            <FacebookProvider appId="365103820781953">
-              <Comments href={window.location.href} width="100%" />
-            </FacebookProvider>
-          </PostComment>
+          {requesting ? (
+            <Spinner intent={Intent.PRIMARY} />
+          ) : (
+            <>
+              <PostHeader>
+                <PostTitle>{post.title}</PostTitle>
+                <p>{post.updatedAt}</p>
+              </PostHeader>
+              <PostContent>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: post.content,
+                  }}
+                ></div>
+              </PostContent>
+              <PostComment>
+                <FacebookProvider appId="365103820781953">
+                  <Comments href={window.location.href} width="100%" />
+                </FacebookProvider>
+              </PostComment>
+            </>
+          )}
         </PostWrapper>
       )}
     </>

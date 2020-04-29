@@ -24,7 +24,8 @@ import { getPostsAction } from './actions';
 
 const HomePage = (props) => {
   const { getPosts, match, homePage } = props;
-  const { posts } = homePage;
+  const { posts, requesting } = homePage;
+  console.log('Bug: HomePage -> requesting', requesting);
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
 
@@ -43,9 +44,11 @@ const HomePage = (props) => {
         <HomeWidget />
       </HomeHeader> */}
       <HomeContent>
-        {posts.length !== 0 && (
-          <ListPost posts={posts} lang={match.params.lang} />
-        )}
+        <ListPost
+          posts={posts}
+          lang={match.params.lang}
+          isRequest={requesting}
+        />
       </HomeContent>
     </HomeWrapper>
   );
