@@ -51,3 +51,18 @@ export const getPageRequest = ({ lang, id }) =>
       }
     `,
   });
+
+export const getPostByCatRequest = ({ lang, catID }) =>
+  client.query({
+    query: gql`
+      {
+        allPosts(where: { category_some: { id: "${catID}" } }) {
+          id
+          title${capitalize(lang)}
+          excerpt${capitalize(lang)}
+          thumbnail
+          slug
+        }
+      }
+    `,
+  });

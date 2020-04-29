@@ -11,15 +11,15 @@ export const initialState = {
   page: {},
 };
 
-const convertToCommonpPost = (post, lang) => {
-  const newPost = {
-    ...post,
-    title: post[`title${capitalize(lang)}`],
-    content: post[`content${capitalize(lang)}`],
+const convertToCommonpPost = (page, lang) => {
+  const newPage = {
+    ...page,
+    title: page[`title${capitalize(lang)}`],
+    content: page[`content${capitalize(lang)}`],
   };
-  delete newPost[`title${capitalize(lang)}`];
-  delete newPost[`content${capitalize(lang)}`];
-  return newPost;
+  delete newPage[`title${capitalize(lang)}`];
+  delete newPage[`content${capitalize(lang)}`];
+  return newPage;
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -30,7 +30,7 @@ const postReducer = (state = initialState, action) =>
         draft.lang = action.lang;
         break;
       case GET_PAGE_SUCCESS:
-        draft.post = convertToCommonpPost(action.page, state.lang);
+        draft.page = convertToCommonpPost(action.page, state.lang);
         break;
     }
   });
