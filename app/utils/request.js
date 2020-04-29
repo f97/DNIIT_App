@@ -29,6 +29,7 @@ export const getPostRequest = ({ lang, id }) =>
           title${capitalize(lang)}
           content${capitalize(lang)}
           category {
+            id
             name${capitalize(lang)}
           }
           updatedAt
@@ -56,6 +57,9 @@ export const getPostByCatRequest = ({ lang, catID }) =>
   client.query({
     query: gql`
       {
+        Category(where: {id: "${catID}" }) {
+          name${capitalize(lang)}
+        }
         allPosts(where: { category_some: { id: "${catID}" } }) {
           id
           title${capitalize(lang)}

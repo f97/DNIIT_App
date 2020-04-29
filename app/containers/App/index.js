@@ -14,6 +14,7 @@ import HomePage from 'containers/HomePage/Loadable';
 import Post from 'containers/Post/Loadable';
 import Page from 'containers/Page/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import Category from 'containers/Category/Loadable';
 
 import { Classes } from '@blueprintjs/core';
 import GlobalStyle from '../../global-styles';
@@ -30,6 +31,7 @@ export default function App() {
         <Route exact path="/:lang" component={HomePage} />
         <Route exact path="/:lang/:postID" component={Post} />
         <Route exact path="/:lang/p/:pageID" component={Page} />
+        <Route exact path="/:lang/cat/:catID" component={Category} />
         <Redirect to="/vi" />
         <Route component={NotFoundPage} />
       </Switch>
