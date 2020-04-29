@@ -17,7 +17,7 @@ import makeSelectPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { getPageAction } from './actions';
-import { PageWrapper, PageHeader, PageContent } from './styled';
+import { PageWrapper, PageHeader, PageContent, PageTitle } from './styled';
 
 export function Page(props) {
   useInjectReducer({ key: 'page', reducer });
@@ -38,7 +38,7 @@ export function Page(props) {
             <meta name="description" content={page.title} />
           </Helmet>
           <PageHeader>
-            <h2>{page.title}</h2>
+            <PageTitle>{page.title}</PageTitle>
             <p>{page.updatedAt}</p>
           </PageHeader>
           <PageContent>
