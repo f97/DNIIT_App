@@ -13,11 +13,18 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import { FacebookProvider, Comments } from 'react-facebook';
 import makeSelectPost from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { getPostAction } from './actions';
-import { PostWrapper, PostHeader, PostContent } from './styled';
+import {
+  PostWrapper,
+  PostHeader,
+  PostContent,
+  PostComment,
+  PostTitle,
+} from './styled';
 
 export function Post(props) {
   useInjectReducer({ key: 'post', reducer });
@@ -39,7 +46,7 @@ export function Post(props) {
             <meta name="description" content={post.title} />
           </Helmet>
           <PostHeader>
-            <h2>{post.title}</h2>
+            <PostTitle>{post.title}</PostTitle>
             <p>{post.updatedAt}</p>
           </PostHeader>
           <PostContent>
@@ -50,6 +57,11 @@ export function Post(props) {
               }}
             ></div>
           </PostContent>
+          <PostComment>
+            <FacebookProvider appId="365103820781953">
+              <Comments href={window.location.href} width="100%" />
+            </FacebookProvider>
+          </PostComment>
         </PostWrapper>
       )}
     </>

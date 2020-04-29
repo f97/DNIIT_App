@@ -62,7 +62,7 @@ function Nav() {
           position={Position.BOTTOM}
           interactionKind={PopoverInteractionKind.HOVER}
         >
-          <Button className="bp3-minimal" text="Tuyen Sinh" />
+          <Button className="bp3-minimal" text="TUYỂN SINH" />
         </Popover>
       </Navbar.Group>
     </Navbar>
