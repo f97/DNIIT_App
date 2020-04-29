@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
-export const ListWrapper = styled.div``;
+export const ListWrapper = styled.div`
+  width: 100%;
+`;
 export const PostWrapper = styled.div`
   display: flex;
   margin-bottom: 10px;
   background: #fff;
-  width: 70%;
+  width: 100%;
 `;
 export const Thumbnail = styled.div``;
 export const Content = styled.div``;

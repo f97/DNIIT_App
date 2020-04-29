@@ -25,7 +25,6 @@ export function Page(props) {
 
   const { getPage, match, page: pageProps } = props;
   const { page } = pageProps;
-  console.log('Page -> page', page);
   useEffect(() => {
     getPage(match.params.lang, match.params.pageID);
   }, []);

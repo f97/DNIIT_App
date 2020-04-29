@@ -6,7 +6,6 @@ import { GET_PAGE_ACTION } from './constants';
 function* getPageFlow({ lang, id }) {
   try {
     const response = yield call(getPageRequest, { lang, id });
-    console.log('function*getPageFlow -> response', response);
     if (response.networkStatus === 7) {
       yield put(getPageSuccess(response.data.Page));
     } else {
