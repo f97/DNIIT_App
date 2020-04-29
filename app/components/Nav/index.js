@@ -19,12 +19,17 @@ import history from '../../utils/history';
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
-
 function Nav() {
   return (
     <Navbar>
       <Navbar.Group align={Alignment.LEFT}>
-        <Button className="bp3-minimal" icon="home"  onClick={()=> {history.push('/')}}/>
+        <Button
+          className="bp3-minimal"
+          icon="home"
+          onClick={() => {
+            history.push('/');
+          }}
+        />
         <Popover
           interactionKind={PopoverInteractionKind.HOVER}
           content={
@@ -40,11 +45,13 @@ function Nav() {
           <Button className="bp3-minimal" text="VIỆN" />
         </Popover>
         <Popover
-          content={<Menu>
-            <MenuItem text="GIỚI THIỆU" />
-            <MenuItem text="NHÓM-ĐỀ ÁN" />
-            <MenuItem text="TÀI LIỆU" />
-          </Menu>}
+          content={
+            <Menu>
+              <MenuItem text="GIỚI THIỆU" />
+              <MenuItem text="NHÓM-ĐỀ ÁN" />
+              <MenuItem text="TÀI LIỆU" />
+            </Menu>
+          }
           position={Position.BOTTOM}
           interactionKind={PopoverInteractionKind.HOVER}
         >
