@@ -25,13 +25,12 @@ import { getPostsAction } from './actions';
 const HomePage = (props) => {
   const { getPosts, match, homePage } = props;
   const { posts, requesting } = homePage;
-  console.log('Bug: HomePage -> requesting', requesting);
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
 
   useEffect(() => {
     getPosts(match.params.lang);
-  }, []);
+  }, [match.params.lang]);
 
   return (
     <HomeWrapper>
