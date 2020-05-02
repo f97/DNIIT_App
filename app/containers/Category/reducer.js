@@ -10,10 +10,13 @@ import { capitalize } from '../../../helpers/data.hepler';
 export const initialState = {
   posts: [],
   lang: 'vi',
-  cat: {},
+  cat: {
+    id: '',
+    name: '',
+  },
 };
 
-const convertToCommonpPost = (posts, lang) => {
+const convertToCommonPost = (posts, lang) => {
   const commonPosts = posts.map((post) => {
     const newPost = {
       ...post,
@@ -29,6 +32,11 @@ const convertToCommonpPost = (posts, lang) => {
   return commonPosts;
 };
 
+const convertCatToCommon = (cat, lang) => ({
+  id: cat.id,
+  name: cat[`name${capitalize(lang)}`],
+});
+
 /* eslint-disable default-case, no-param-reassign */
 const homePageReducer = (state = initialState, action) =>
   produce(state, (draft) => {
@@ -37,8 +45,8 @@ const homePageReducer = (state = initialState, action) =>
         draft.lang = action.lang;
         break;
       case GET_POSTS_SUCCESS:
-        draft.posts = convertToCommonpPost(action.posts, state.lang);
-        draft.cat = action.category;
+        draft.posts = convertToCommonPost(action.posts, state.lang);
+        draft.cat = convertCatToCommon(action.category, state.lang);
         break;
     }
   });

@@ -38,15 +38,13 @@ export function Category(props) {
       {!requesting && (
         <>
           <Helmet>
-            <title>{cat[`name${capitalize(lang)}`]}</title>
-            <meta name="description" content={cat[`name${capitalize(lang)}`]} />
+            <title>{cat.name}</title>
+            <meta name="description" content={cat.name} />
           </Helmet>
           <CatWrapper>
             <Categories>
               <Link to={`/${lang}/`}>Trang Chủ</Link>
-              <Link to={`/${lang}/cat/${cat.id}`}>
-                {cat[`name${capitalize(lang)}`]}
-              </Link>
+              <Link to={`/${lang}/cat/${cat.id}`}>{cat.name}</Link>
             </Categories>
             {posts.length !== 0 && <ListPost posts={posts} lang={lang} />}
           </CatWrapper>
