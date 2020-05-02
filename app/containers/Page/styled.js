@@ -7,13 +7,14 @@ export const PageWrapper = styled.div`
 `;
 
 export const PageHeader = styled.div`
-  color: #444;
+  color: #800;
+  border-bottom: 1px solid #800;
 `;
 export const PageContent = styled.div`
-  background: #999;
   color: #444;
+  padding-top: 20px;
 `;
 
 export const PageTitle = styled(H2)`
-  color: #444 !important;
+  color: #800 !important;
 `;

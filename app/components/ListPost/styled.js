@@ -2,6 +2,23 @@ import styled from 'styled-components';
 
 export const ListWrapper = styled.div`
   width: 100%;
+  .bp3-button-group.pagination {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    margin-top: 30px;
+    button {
+      background: #fff;
+      color: #444;
+    }
+    .active {
+      background-color: #384b59;
+      border-color: #1d2a33;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+    }
+  }
 `;
 export const PostWrapper = styled.div`
   display: flex;
@@ -26,6 +43,8 @@ export const Thumbnail = styled.div`
 export const Content = styled.div``;
 export const Title = styled.div`
   color: #880000;
+  font-weight: bold;
+  font-size: 16px;
 `;
 export const Sumary = styled.div`
   color: #444;

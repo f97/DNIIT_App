@@ -39,11 +39,10 @@ export function Page(props) {
           </Helmet>
           <PageHeader>
             <PageTitle>{page.title}</PageTitle>
-            <p>{page.updatedAt}</p>
+            <p>Ngày Cập Nhật: {page.updatedAt}</p>
           </PageHeader>
           <PageContent>
             <div
-              // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
                 __html: page.content,
               }}

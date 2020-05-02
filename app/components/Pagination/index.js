@@ -45,6 +45,7 @@ const Pagination = ({ page, totalPages, onChangePage }) => {
           onClick={() => {
             onChangePage(p);
           }}
+          className={p === page ? 'active' : ''}
         >
           {p}
         </Button>
