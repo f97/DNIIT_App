@@ -6,5 +6,9 @@ export const HeaderWrapper = styled.div`
   background: #ffffff;
   height: 120px;
 `;
-export const HeaderLogo = styled.img``;
+export const HeaderLogo = styled.img`
+  max-width: 50%;
+  float: right;
+  margin-right: 25%;
+`;
 export const BackgroudHeader = styled.img``;
