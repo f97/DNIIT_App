@@ -1,11 +1,11 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { getPostByCatRequest } from '../../utils/request';
+import { getPostBySearch } from '../../utils/request';
 import { getPostsSuccess, getPostsError } from './actions';
 import { GET_POSTS_ACTION } from './constants';
 
-function* getPostsFlow({ lang, catID }) {
+function* getPostsFlow({ lang, key }) {
   try {
-    const response = yield call(getPostByCatRequest, { lang, catID });
+    const response = yield call(getPostBySearch, { lang, key });
     if (response.networkStatus === 7) {
       yield put(getPostsSuccess(response.data.allPosts));
     } else {
@@ -16,6 +16,6 @@ function* getPostsFlow({ lang, catID }) {
   }
 }
 
-export default function* categorySaga() {
+export default function* searchSaga() {
   yield takeLatest(GET_POSTS_ACTION, getPostsFlow);
 }

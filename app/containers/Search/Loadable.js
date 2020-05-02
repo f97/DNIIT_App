@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for Category
+ * Asynchronously loads the component for Search
  *
  */
 

@@ -1,6 +1,6 @@
 /*
  *
- * Category reducer
+ * Search reducer
  *
  */
 import produce from 'immer';
@@ -12,7 +12,7 @@ export const initialState = {
   lang: null,
 };
 
-const convertToCommonpPost = (posts, lang) => {
+const convertToCommonPost = (posts, lang) => {
   const commonPosts = posts.map((post) => {
     const newPost = {
       ...post,
@@ -36,7 +36,7 @@ const homePageReducer = (state = initialState, action) =>
         draft.lang = action.lang;
         break;
       case GET_POSTS_SUCCESS:
-        draft.posts = convertToCommonpPost(action.posts, state.lang);
+        draft.posts = convertToCommonPost(action.posts, state.lang);
         break;
     }
   });

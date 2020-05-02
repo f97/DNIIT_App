@@ -28,7 +28,11 @@ export const PostContent = styled.div`
   color: #444;
 `;
 
-export const PostComment = styled.div``;
+export const PostComment = styled.div`
+  iframe {
+    width: 100% !important;
+  }
+`;
 
 export const PostTitle = styled(H2)`
   color: #800 !important;

@@ -1,6 +1,6 @@
 /*
  *
- * Category actions
+ * Search actions
  *
  */
 
@@ -10,10 +10,10 @@ import {
   GET_POSTS_SUCCESS,
 } from './constants';
 
-export const getPostsAction = (lang, catID) => ({
+export const getPostsAction = (lang, key) => ({
   type: GET_POSTS_ACTION,
   lang,
-  catID,
+  key,
 });
 
 export const getPostsError = (err) => ({

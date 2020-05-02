@@ -2,21 +2,21 @@ import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
 /**
- * Direct selector to the category state domain
+ * Direct selector to the search state domain
  */
 
-const selectCategoryDomain = (state) => state.category || initialState;
+const selectSearchDomain = (state) => state.search || initialState;
 
 /**
  * Other specific selectors
  */
 
 /**
- * Default selector used by Category
+ * Default selector used by Search
  */
 
-const makeSelectCategory = () =>
-  createSelector(selectCategoryDomain, (substate) => substate);
+const makeSelectSearch = () =>
+  createSelector(selectSearchDomain, (substate) => substate);
 
-export default makeSelectCategory;
-export { selectCategoryDomain };
+export default makeSelectSearch;
+export { selectSearchDomain };

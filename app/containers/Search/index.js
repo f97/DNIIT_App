@@ -1,6 +1,6 @@
 /**
  *
- * Category
+ * Search
  *
  */
 
@@ -13,48 +13,40 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import makeSelectSearch from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-// import HomeSlide from '../../components/HomeSlide';
-// import HomeWidget from '../../components/HomeWidget';
-import ListPost from '../../components/ListPost';
-import { HomeWrapper, HomeContent } from './styled';
 import { getPostsAction } from './actions';
-import makeSelectCategory from './selectors';
+import ListPost from '../../components/ListPost';
 
-export function Category(props) {
-  useInjectReducer({ key: 'category', reducer });
-  useInjectSaga({ key: 'category', saga });
-
-  const { getPosts, match, category } = props;
-  const { posts } = category;
-  console.log('Category -> posts', posts);
+export function Search(props) {
+  useInjectReducer({ key: 'search', reducer });
+  useInjectSaga({ key: 'search', saga });
+  const { match, getPosts, search } = props;
+  const { posts, lang } = search;
 
   useEffect(() => {
-    getPosts(match.params.lang, match.params.catID);
+    getPosts(match.params.lang, match.params.key);
   }, []);
-
   return (
     <div>
       <Helmet>
-        <title>Category</title>
-        <meta name="description" content="Description of Category" />
+        <title>Search</title>
+        <meta name="description" content="Description of Search" />
       </Helmet>
-      {posts.length !== 0 && (
-        <ListPost posts={posts} lang={match.params.lang} />
-      )}
+      {posts.length !== 0 && <ListPost posts={posts} lang={lang} />}
     </div>
   );
 }
 
-Category.propTypes = {
+Search.propTypes = {
   match: PropTypes.object.isRequired,
+  search: PropTypes.object.isRequired,
   getPosts: PropTypes.func.isRequired,
-  category: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  category: makeSelectCategory(),
+  search: makeSelectSearch(),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -63,4 +55,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(withConnect, memo)(Category);
+export default compose(withConnect, memo)(Search);

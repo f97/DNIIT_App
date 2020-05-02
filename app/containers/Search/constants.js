@@ -1,6 +1,6 @@
 /*
  *
- * Category constants
+ * Search constants
  *
  */
 

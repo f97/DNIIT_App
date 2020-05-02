@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import ApolloClient from 'apollo-boost';
 import gql from 'graphql-tag';
 import { capitalize } from '../../helpers/data.hepler';
@@ -58,10 +59,25 @@ export const getPostByCatRequest = ({ lang, catID }) =>
   client.query({
     query: gql`
       {
-        Category(where: {id: "${catID}" }) {
+        Category(where: {id: "${catID}" }, orderBy: "createdAt_DESC") {
           name${capitalize(lang)}
         }
         allPosts(where: { category_some: { id: "${catID}" } }) {
+          id
+          title${capitalize(lang)}
+          excerpt${capitalize(lang)}
+          thumbnail
+          slug
+        }
+      }
+    `,
+  });
+
+export const getPostBySearch = ({ lang, key }) =>
+  client.query({
+    query: gql`
+      {
+        allPosts (where: { title${capitalize(lang)}_contains_i: "${key}"}, orderBy: "createdAt_DESC") {
           id
           title${capitalize(lang)}
           excerpt${capitalize(lang)}

@@ -18,7 +18,6 @@ import saga from './saga';
 // import HomeSlide from '../../components/HomeSlide';
 // import HomeWidget from '../../components/HomeWidget';
 import ListPost from '../../components/ListPost';
-import { HomeWrapper, HomeContent } from './styled';
 import { getPostsAction } from './actions';
 import makeSelectCategory from './selectors';
 
@@ -28,7 +27,6 @@ export function Category(props) {
 
   const { getPosts, match, category } = props;
   const { posts } = category;
-  console.log('Category -> posts', posts);
 
   useEffect(() => {
     getPosts(match.params.lang, match.params.catID);
