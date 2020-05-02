@@ -35,7 +35,7 @@ const HomePage = (props) => {
   return (
     <HomeWrapper>
       <Helmet>
-        <title>HomePage</title>
+        <title>DNIIT</title>
         <meta name="description" content="Description of HomePage" />
       </Helmet>
       {/* <HomeHeader>
