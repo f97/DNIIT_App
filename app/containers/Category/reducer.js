@@ -9,7 +9,8 @@ import { capitalize } from '../../../helpers/data.hepler';
 
 export const initialState = {
   posts: [],
-  lang: null,
+  lang: 'vi',
+  cat: {},
 };
 
 const convertToCommonpPost = (posts, lang) => {
@@ -37,6 +38,7 @@ const homePageReducer = (state = initialState, action) =>
         break;
       case GET_POSTS_SUCCESS:
         draft.posts = convertToCommonpPost(action.posts, state.lang);
+        draft.cat = action.category;
         break;
     }
   });

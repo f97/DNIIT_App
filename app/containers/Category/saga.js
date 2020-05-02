@@ -7,7 +7,9 @@ function* getPostsFlow({ lang, catID }) {
   try {
     const response = yield call(getPostByCatRequest, { lang, catID });
     if (response.networkStatus === 7) {
-      yield put(getPostsSuccess(response.data.allPosts));
+      yield put(
+        getPostsSuccess(response.data.allPosts, response.data.Category),
+      );
     } else {
       yield put(getPostsError(response));
     }

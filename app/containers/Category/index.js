@@ -13,20 +13,21 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import { Link } from 'react-router-dom';
 import reducer from './reducer';
 import saga from './saga';
-// import HomeSlide from '../../components/HomeSlide';
-// import HomeWidget from '../../components/HomeWidget';
 import ListPost from '../../components/ListPost';
 import { getPostsAction } from './actions';
 import makeSelectCategory from './selectors';
+import { CatWrapper, Categories } from './styled';
+import { capitalize } from '../../../helpers/data.hepler';
 
 export function Category(props) {
   useInjectReducer({ key: 'category', reducer });
   useInjectSaga({ key: 'category', saga });
 
   const { getPosts, match, category } = props;
-  const { posts } = category;
+  const { posts, cat, lang, requesting } = category;
 
   useEffect(() => {
     getPosts(match.params.lang, match.params.catID);
@@ -34,12 +35,22 @@ export function Category(props) {
 
   return (
     <div>
-      <Helmet>
-        <title>Category</title>
-        <meta name="description" content="Description of Category" />
-      </Helmet>
-      {posts.length !== 0 && (
-        <ListPost posts={posts} lang={match.params.lang} />
+      {!requesting && (
+        <>
+          <Helmet>
+            <title>{cat[`name${capitalize(lang)}`]}</title>
+            <meta name="description" content={cat[`name${capitalize(lang)}`]} />
+          </Helmet>
+          <CatWrapper>
+            <Categories>
+              <Link to={`/${lang}/`}>Trang Chủ</Link>
+              <Link to={`/${lang}/cat/${cat.id}`}>
+                {cat[`name${capitalize(lang)}`]}
+              </Link>
+            </Categories>
+            {posts.length !== 0 && <ListPost posts={posts} lang={lang} />}
+          </CatWrapper>
+        </>
       )}
     </div>
   );

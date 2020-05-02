@@ -13,10 +13,9 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { FacebookProvider, Comments } from 'react-facebook';
+import { FacebookProvider, Comments, ShareButton } from 'react-facebook';
 import { Spinner, Intent } from '@blueprintjs/core';
 import { Link } from 'react-router-dom';
-import ShareButton from 'react-facebook/dist/ShareButton';
 import makeSelectPost from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -28,8 +27,8 @@ import {
   PostComment,
   PostTitle,
   Categories,
-  Share,
   PostExcerpt,
+  Share,
 } from './styled';
 import { capitalize } from '../../../helpers/data.hepler';
 
@@ -76,11 +75,13 @@ export function Post(props) {
                   }}
                 ></div>
               </PostContent>
-              {/* <Share>
+              <Share>
                 <FacebookProvider appId="365103820781953">
-                  <ShareButton href={window.location.href}>Share</ShareButton>
+                  <ShareButton href={window.location.href}>
+                    Facebook Share
+                  </ShareButton>
                 </FacebookProvider>
-              </Share> */}
+              </Share>
               <PostComment>
                 <FacebookProvider appId="365103820781953">
                   <Comments href={window.location.href} width="100%" />

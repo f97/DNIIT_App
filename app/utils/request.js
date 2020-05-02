@@ -59,10 +59,11 @@ export const getPostByCatRequest = ({ lang, catID }) =>
   client.query({
     query: gql`
       {
-        Category(where: {id: "${catID}" }, orderBy: "createdAt_DESC") {
+        Category(where: {id: "${catID}" }) {
           name${capitalize(lang)}
+          id
         }
-        allPosts(where: { category_some: { id: "${catID}" } }) {
+        allPosts(where: {category_some: { id: "${catID}" }}, orderBy: "createdAt_DESC") {
           id
           title${capitalize(lang)}
           excerpt${capitalize(lang)}

@@ -21,7 +21,8 @@ export const getPostsError = (err) => ({
   err,
 });
 
-export const getPostsSuccess = (posts) => ({
+export const getPostsSuccess = (posts, category) => ({
   type: GET_POSTS_SUCCESS,
   posts,
+  category,
 });
