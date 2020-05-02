@@ -23,8 +23,6 @@ export const PostHeader = styled.div`
 `;
 
 export const PostContent = styled.div`
-  margin-top: 20px;
-  background: #fff;
   color: #444;
 `;
 

@@ -6,13 +6,17 @@
 
 import React, { memo } from 'react';
 // import PropTypes from 'prop-types';
-import { HeaderWrapper, HeaderLogo, BackgroudHeader } from './styled';
+import { HeaderWrapper, HeaderLogo } from './styled';
 
 function Header() {
   return (
     <HeaderWrapper>
-      <HeaderLogo src="http://ifi.edu.vn/images/logo-5-mau_160x160.png" />
-      <BackgroudHeader src="http://ifi.edu.vn/uploads/banners/1500-324.png" />
+      <HeaderLogo
+        src="https://dniit-i3s.cnrs.fr/sites/default/files/logo_1000x250.jpg"
+        width="450"
+        px
+        heigt="200px"
+      />
     </HeaderWrapper>
   );
 }
