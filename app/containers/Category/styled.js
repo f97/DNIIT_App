@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const CatWrapper = styled.div``;
+export const CatWrapper = styled.div`
+  background: #ffffff;
+  padding: 30px;
+`;
 
 export const catHeader = styled.div`
   display: flex;
@@ -13,6 +16,7 @@ export const CatContent = styled.div`
 
 export const Categories = styled.div`
   padding: 8px 15px;
+  margin-bottom: 18px;
   margin-bottom: 18px;
   list-style: none;
   background-color: #f5f5f5;

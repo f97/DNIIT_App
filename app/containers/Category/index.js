@@ -20,7 +20,6 @@ import ListPost from '../../components/ListPost';
 import { getPostsAction } from './actions';
 import makeSelectCategory from './selectors';
 import { CatWrapper, Categories } from './styled';
-import { capitalize } from '../../../helpers/data.hepler';
 
 export function Category(props) {
   useInjectReducer({ key: 'category', reducer });

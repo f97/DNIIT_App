@@ -3,6 +3,7 @@ import { H2 } from '@blueprintjs/core';
 
 export const PageWrapper = styled.div`
   background: #ffffff;
+  padding: 30px;
 `;
 
 export const PageHeader = styled.div`
