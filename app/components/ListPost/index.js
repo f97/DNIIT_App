@@ -17,6 +17,7 @@ import {
   Sumary,
 } from './styled';
 import Pagination from '../Pagination';
+import { truncate } from '../../../helpers/data.hepler';
 
 function ListPost({ posts, lang, isRequest }) {
   const [page, setPage] = useState(1);
@@ -42,9 +43,9 @@ function ListPost({ posts, lang, isRequest }) {
               )}
               <Content>
                 <Link to={`/${lang}/${post.id}`}>
-                  <Title>{post.title}</Title>
+                  <Title>{truncate(post.title, 70)}</Title>
                 </Link>
-                <Sumary>{post.excerpt}</Sumary>
+                <Sumary>{truncate(post.excerpt, 240)}</Sumary>
               </Content>
             </PostWrapper>
           ))}

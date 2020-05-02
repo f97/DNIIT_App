@@ -48,4 +48,5 @@ export const Title = styled.div`
 `;
 export const Sumary = styled.div`
   color: #444;
+  line-height: 1.6;
 `;
