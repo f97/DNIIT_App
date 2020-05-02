@@ -15,6 +15,8 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { FacebookProvider, Comments } from 'react-facebook';
 import { Spinner, Intent } from '@blueprintjs/core';
+import { Link } from 'react-router-dom';
+import ShareButton from 'react-facebook/dist/ShareButton';
 import makeSelectPost from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -25,7 +27,11 @@ import {
   PostContent,
   PostComment,
   PostTitle,
+  Categories,
+  Share,
+  PostExcerpt,
 } from './styled';
+import { capitalize } from '../../../helpers/data.hepler';
 
 export function Post(props) {
   useInjectReducer({ key: 'post', reducer });
@@ -50,17 +56,31 @@ export function Post(props) {
             <Spinner intent={Intent.PRIMARY} />
           ) : (
             <>
+              <Categories>
+                <Link to={`/${match.params.lang}/`}>Trang Chủ</Link>
+                {post.category.map((cat) => (
+                  <Link key={cat.id} to={`/${match.params.lang}/cat/${cat.id}`}>
+                    {cat[`name${capitalize(match.params.lang)}`]}
+                  </Link>
+                ))}
+              </Categories>
               <PostHeader>
                 <PostTitle>{post.title}</PostTitle>
-                <p>{post.updatedAt}</p>
+                <p>Ngày Cập Nhật: {post.updatedAt}</p>
               </PostHeader>
               <PostContent>
+                <PostExcerpt>{post.excerpt}</PostExcerpt>
                 <div
                   dangerouslySetInnerHTML={{
                     __html: post.content,
                   }}
                 ></div>
               </PostContent>
+              {/* <Share>
+                <FacebookProvider appId="365103820781953">
+                  <ShareButton href={window.location.href}>Share</ShareButton>
+                </FacebookProvider>
+              </Share> */}
               <PostComment>
                 <FacebookProvider appId="365103820781953">
                   <Comments href={window.location.href} width="100%" />

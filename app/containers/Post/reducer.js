@@ -17,9 +17,11 @@ const convertToCommonpPost = (post, lang) => {
     ...post,
     title: post[`title${capitalize(lang)}`],
     content: post[`content${capitalize(lang)}`],
+    excerpt: post[`excerpt${capitalize(lang)}`],
   };
   delete newPost[`title${capitalize(lang)}`];
   delete newPost[`content${capitalize(lang)}`];
+  delete newPost[`excerpt${capitalize(lang)}`];
   return newPost;
 };
 

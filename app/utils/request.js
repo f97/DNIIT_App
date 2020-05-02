@@ -28,6 +28,7 @@ export const getPostRequest = ({ lang, id }) =>
         Post(where: { id: "${id}"}) {
           title${capitalize(lang)}
           content${capitalize(lang)}
+          excerpt${capitalize(lang)}
           category {
             id
             name${capitalize(lang)}
