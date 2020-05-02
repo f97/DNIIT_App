@@ -14,6 +14,7 @@ export const initialState = {
     id: '',
     name: '',
   },
+  requesting: true,
 };
 
 const convertToCommonPost = (posts, lang) => {
@@ -43,10 +44,12 @@ const homePageReducer = (state = initialState, action) =>
     switch (action.type) {
       case GET_POSTS_ACTION:
         draft.lang = action.lang;
+        draft.requesting = true;
         break;
       case GET_POSTS_SUCCESS:
         draft.posts = convertToCommonPost(action.posts, state.lang);
         draft.cat = convertCatToCommon(action.category, state.lang);
+        draft.requesting = false;
         break;
     }
   });

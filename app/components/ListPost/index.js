@@ -7,7 +7,6 @@
 import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Spinner, Intent } from '@blueprintjs/core';
 import {
   ListWrapper,
   Thumbnail,
@@ -18,13 +17,14 @@ import {
 } from './styled';
 import Pagination from '../Pagination';
 import { truncate } from '../../../helpers/data.hepler';
+import PostSkeleton from '../PostSkeleton';
 
 function ListPost({ posts, lang, isRequest }) {
   const [page, setPage] = useState(1);
   return (
     <ListWrapper>
       {isRequest ? (
-        <Spinner intent={Intent.PRIMARY} />
+        <PostSkeleton numberPost={5} />
       ) : (
         <>
           {posts.slice((page - 1) * 5, (page - 1) * 5 + 5).map((post) => (

@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import {
   Navbar,
   Alignment,
@@ -14,12 +14,19 @@ import {
   Position,
   MenuItem,
   PopoverInteractionKind,
+  InputGroup,
 } from '@blueprintjs/core';
 import history from '../../utils/history';
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
 function Nav() {
+  const [key, setKey] = useState('');
+  const handleSearch = () => {
+    const lang = `${window.location.pathname}`.match(/\/([a-z]{2})/)[1];
+    history.push(`/${lang}/search/${key}`);
+  };
+
   return (
     <Navbar>
       <Navbar.Group align={Alignment.LEFT}>
@@ -64,6 +71,25 @@ function Nav() {
         >
           <Button className="bp3-minimal" text="TUYỂN SINH" />
         </Popover>
+        <Navbar.Divider />
+        <InputGroup
+          leftIcon="search"
+          onChange={(e) => setKey(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.keyCode === 13) {
+              handleSearch();
+            }
+          }}
+          rightElement={
+            <Button
+              minimal
+              rightIcon="key-enter"
+              onClick={() => {
+                handleSearch();
+              }}
+            ></Button>
+          }
+        />
       </Navbar.Group>
     </Navbar>
   );

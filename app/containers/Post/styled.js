@@ -5,7 +5,7 @@ export const PostWrapper = styled.div`
   background: #ffffff;
   padding: 30px;
   .bp3-spinner {
-    padding: 200px;
+    padding: 300px 0;
   }
   img {
     width: 100% !important;

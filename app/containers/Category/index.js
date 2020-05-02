@@ -34,21 +34,19 @@ export function Category(props) {
 
   return (
     <div>
-      {!requesting && (
-        <>
-          <Helmet>
-            <title>{cat.name}</title>
-            <meta name="description" content={cat.name} />
-          </Helmet>
-          <CatWrapper>
-            <Categories>
-              <Link to={`/${lang}/`}>Trang Chủ</Link>
-              <Link to={`/${lang}/cat/${cat.id}`}>{cat.name}</Link>
-            </Categories>
-            {posts.length !== 0 && <ListPost posts={posts} lang={lang} />}
-          </CatWrapper>
-        </>
-      )}
+      <>
+        <Helmet>
+          <title>{cat.name}</title>
+          <meta name="description" content={cat.name} />
+        </Helmet>
+        <CatWrapper>
+          <Categories>
+            <Link to={`/${lang}/`}>Trang Chủ</Link>
+            <Link to={`/${lang}/cat/${cat.id}`}>{cat.name}</Link>
+          </Categories>
+          <ListPost posts={posts} lang={lang} isRequest={requesting} />
+        </CatWrapper>
+      </>
     </div>
   );
 }

@@ -18,23 +18,36 @@ import reducer from './reducer';
 import saga from './saga';
 import { getPostsAction } from './actions';
 import ListPost from '../../components/ListPost';
+import { SearchWrapper, SearchHeader, SearchNoti } from './styled';
 
 export function Search(props) {
   useInjectReducer({ key: 'search', reducer });
   useInjectSaga({ key: 'search', saga });
   const { match, getPosts, search } = props;
-  const { posts, lang } = search;
+  const { posts, lang, requesting } = search;
 
   useEffect(() => {
     getPosts(match.params.lang, match.params.key);
-  }, []);
+  }, [match.params.key]);
+
   return (
     <div>
       <Helmet>
         <title>Search</title>
         <meta name="description" content="Description of Search" />
       </Helmet>
-      {posts.length !== 0 && <ListPost posts={posts} lang={lang} />}
+      <SearchWrapper>
+        <SearchHeader>
+          Kết quả tìm kiếm bởi từ khoá <span>{match.params.key}</span>
+        </SearchHeader>
+        {!requesting && posts.length !== 0 && (
+          <ListPost posts={posts} lang={lang} />
+        )}
+
+        {!requesting && posts.length === 0 && (
+          <SearchNoti>Không có kết quả nào cho tìm kiếm</SearchNoti>
+        )}
+      </SearchWrapper>
     </div>
   );
 }
