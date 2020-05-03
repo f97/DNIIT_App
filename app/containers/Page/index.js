@@ -31,7 +31,7 @@ export function Page(props) {
   const { page, lang } = pageProps;
   useEffect(() => {
     getPage(match.params.lang, match.params.pageID);
-  }, []);
+  }, [match.params.pageID]);
 
   return (
     <>

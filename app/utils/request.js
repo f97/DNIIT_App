@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { capitalize } from '../../helpers/data.hepler';
 
 const client = new ApolloClient({
-  uri: 'https://dniit-api.herokuapp.com/admin/api',
+  uri: 'https://api-dn.herokuapp.com/admin/api',
 });
 
 export const getPostsRequest = ({ lang }) =>

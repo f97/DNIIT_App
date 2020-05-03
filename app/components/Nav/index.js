@@ -111,6 +111,10 @@ function Nav(props) {
     history.push(`/${lang}/cat/${id}`);
   };
 
+  const openPage = (id) => {
+    history.push(`/${lang}/p/${id}`);
+  };
+
   return (
     <Navbar>
       <Navbar.Group align={Alignment.LEFT}>
@@ -125,10 +129,22 @@ function Nav(props) {
           interactionKind={PopoverInteractionKind.HOVER}
           content={
             <Menu>
-              <MenuItem text={menuJson[1][1]} />
-              <MenuItem text={menuJson[1][2]} />
-              <MenuItem text={menuJson[1][3]} />
-              <MenuItem text={menuJson[1][4]} />
+              <MenuItem
+                text={menuJson[1][1]}
+                onClick={() => openPage('5ea8479bf8dd5e0017a665e0')}
+              />
+              <MenuItem
+                text={menuJson[1][2]}
+                onClick={() => openPage('5eae199904747b0017acf895')}
+              />
+              <MenuItem
+                text={menuJson[1][3]}
+                onClick={() => openPage('5eae1a8a04747b0017acf896')}
+              />
+              <MenuItem
+                text={menuJson[1][4]}
+                onClick={() => openPage('5eae1b8004747b0017acf897')}
+              />
             </Menu>
           }
           position={Position.BOTTOM}
