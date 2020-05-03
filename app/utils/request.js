@@ -11,7 +11,7 @@ export const getPostsRequest = ({ lang }) =>
   client.query({
     query: gql`
       {
-        allPosts(orderBy: "createdAt_DESC") {
+        allPosts(orderBy: "updatedAt_DESC") {
           id
           title${capitalize(lang)}
           excerpt${capitalize(lang)}
@@ -63,7 +63,7 @@ export const getPostByCatRequest = ({ lang, catID }) =>
           name${capitalize(lang)}
           id
         }
-        allPosts(where: {category_some: { id: "${catID}" }}, orderBy: "createdAt_DESC") {
+        allPosts(where: {category_some: { id: "${catID}" }}, orderBy: "updatedAt_DESC") {
           id
           title${capitalize(lang)}
           excerpt${capitalize(lang)}
@@ -78,7 +78,7 @@ export const getPostBySearch = ({ lang, key }) =>
   client.query({
     query: gql`
       {
-        allPosts (where: { title${capitalize(lang)}_contains_i: "${key}"}, orderBy: "createdAt_DESC") {
+        allPosts (where: { title${capitalize(lang)}_contains_i: "${key}"}, orderBy: "updatedAt_DESC") {
           id
           title${capitalize(lang)}
           excerpt${capitalize(lang)}
