@@ -21,6 +21,10 @@ import saga from './saga';
 import ListPost from '../../components/ListPost';
 import { HomeWrapper, HomeContent } from './styled';
 import { getPostsAction } from './actions';
+import Header from '../../components/Header';
+import Nav from '../../components/Nav';
+import { AppMain, MainSite } from '../App/styled';
+import RightSide from '../../components/RightSide';
 
 const HomePage = (props) => {
   const { getPosts, match, homePage } = props;
@@ -33,23 +37,32 @@ const HomePage = (props) => {
   }, [match.params.lang]);
 
   return (
-    <HomeWrapper>
-      <Helmet>
-        <title>DNIIT</title>
-        <meta name="description" content="Description of HomePage" />
-      </Helmet>
-      {/* <HomeHeader>
-        <HomeSlide />
-        <HomeWidget />
-      </HomeHeader> */}
-      <HomeContent>
-        <ListPost
-          posts={posts}
-          lang={match.params.lang}
-          isRequest={requesting}
-        />
-      </HomeContent>
-    </HomeWrapper>
+    <>
+      <Header />
+      <Nav />
+      <AppMain>
+        <MainSite>
+          <HomeWrapper>
+            <Helmet>
+              <title>DNIIT</title>
+              <meta name="description" content="Description of HomePage" />
+            </Helmet>
+            {/* <HomeHeader>
+              <HomeSlide />
+              <HomeWidget />
+            </HomeHeader> */}
+            <HomeContent>
+              <ListPost
+                posts={posts}
+                lang={match.params.lang}
+                isRequest={requesting}
+              />
+            </HomeContent>
+          </HomeWrapper>
+        </MainSite>
+        <RightSide />
+      </AppMain>
+    </>
   );
 };
 

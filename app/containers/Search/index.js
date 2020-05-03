@@ -19,6 +19,10 @@ import saga from './saga';
 import { getPostsAction } from './actions';
 import ListPost from '../../components/ListPost';
 import { SearchWrapper, SearchHeader, SearchNoti } from './styled';
+import Header from '../../components/Header';
+import Nav from '../../components/Nav';
+import { AppMain, MainSite } from '../App/styled';
+import RightSide from '../../components/RightSide';
 
 export function Search(props) {
   useInjectReducer({ key: 'search', reducer });
@@ -31,24 +35,31 @@ export function Search(props) {
   }, [match.params.key]);
 
   return (
-    <div>
-      <Helmet>
-        <title>Search</title>
-        <meta name="description" content="Description of Search" />
-      </Helmet>
-      <SearchWrapper>
-        <SearchHeader>
-          Kết quả tìm kiếm bởi từ khoá <span>{match.params.key}</span>
-        </SearchHeader>
-        {!requesting && posts.length !== 0 && (
-          <ListPost posts={posts} lang={lang} />
-        )}
+    <>
+      <Header />
+      <Nav />
+      <AppMain>
+        <MainSite>
+          <Helmet>
+            <title>Search</title>
+            <meta name="description" content="Description of Search" />
+          </Helmet>
+          <SearchWrapper>
+            <SearchHeader>
+              Kết quả tìm kiếm bởi từ khoá <span>{match.params.key}</span>
+            </SearchHeader>
+            {!requesting && posts.length !== 0 && (
+              <ListPost posts={posts} lang={lang} />
+            )}
 
-        {!requesting && posts.length === 0 && (
-          <SearchNoti>Không có kết quả nào cho tìm kiếm</SearchNoti>
-        )}
-      </SearchWrapper>
-    </div>
+            {!requesting && posts.length === 0 && (
+              <SearchNoti>Không có kết quả nào cho tìm kiếm</SearchNoti>
+            )}
+          </SearchWrapper>
+        </MainSite>
+        <RightSide />
+      </AppMain>
+    </>
   );
 }
 

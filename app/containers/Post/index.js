@@ -31,6 +31,10 @@ import {
   Share,
 } from './styled';
 import { capitalize } from '../../../helpers/data.hepler';
+import Header from '../../components/Header';
+import Nav from '../../components/Nav';
+import { AppMain, MainSite } from '../App/styled';
+import RightSide from '../../components/RightSide';
 
 export function Post(props) {
   useInjectReducer({ key: 'post', reducer });
@@ -46,50 +50,62 @@ export function Post(props) {
   return (
     <>
       {post && (
-        <PostWrapper>
-          <Helmet>
-            <title>{post.title}</title>
-            <meta name="description" content={post.title} />
-          </Helmet>
-          {requesting ? (
-            <Spinner intent={Intent.PRIMARY} />
-          ) : (
-            <>
-              <Categories>
-                <Link to={`/${match.params.lang}/`}>Trang Chủ</Link>
-                {post.category.map((cat) => (
-                  <Link key={cat.id} to={`/${match.params.lang}/cat/${cat.id}`}>
-                    {cat[`name${capitalize(match.params.lang)}`]}
-                  </Link>
-                ))}
-              </Categories>
-              <PostHeader>
-                <PostTitle>{post.title}</PostTitle>
-                <p>Ngày Cập Nhật: {post.updatedAt}</p>
-              </PostHeader>
-              <PostContent>
-                <PostExcerpt>{post.excerpt}</PostExcerpt>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: post.content,
-                  }}
-                ></div>
-              </PostContent>
-              <Share>
-                <FacebookProvider appId="365103820781953">
-                  <ShareButton href={window.location.href}>
-                    Facebook Share
-                  </ShareButton>
-                </FacebookProvider>
-              </Share>
-              <PostComment>
-                <FacebookProvider appId="365103820781953">
-                  <Comments href={window.location.href} width="100%" />
-                </FacebookProvider>
-              </PostComment>
-            </>
-          )}
-        </PostWrapper>
+        <>
+          <Header />
+          <Nav />
+          <AppMain>
+            <MainSite>
+              <PostWrapper>
+                <Helmet>
+                  <title>{post.title}</title>
+                  <meta name="description" content={post.title} />
+                </Helmet>
+                {requesting ? (
+                  <Spinner intent={Intent.PRIMARY} />
+                ) : (
+                  <>
+                    <Categories>
+                      <Link to={`/${match.params.lang}/`}>Trang Chủ</Link>
+                      {post.category.map((cat) => (
+                        <Link
+                          key={cat.id}
+                          to={`/${match.params.lang}/cat/${cat.id}`}
+                        >
+                          {cat[`name${capitalize(match.params.lang)}`]}
+                        </Link>
+                      ))}
+                    </Categories>
+                    <PostHeader>
+                      <PostTitle>{post.title}</PostTitle>
+                      <p>Ngày Cập Nhật: {post.updatedAt}</p>
+                    </PostHeader>
+                    <PostContent>
+                      <PostExcerpt>{post.excerpt}</PostExcerpt>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: post.content,
+                        }}
+                      ></div>
+                    </PostContent>
+                    <Share>
+                      <FacebookProvider appId="365103820781953">
+                        <ShareButton href={window.location.href}>
+                          Facebook Share
+                        </ShareButton>
+                      </FacebookProvider>
+                    </Share>
+                    <PostComment>
+                      <FacebookProvider appId="365103820781953">
+                        <Comments href={window.location.href} width="100%" />
+                      </FacebookProvider>
+                    </PostComment>
+                  </>
+                )}
+              </PostWrapper>
+            </MainSite>
+            <RightSide />
+          </AppMain>
+        </>
       )}
     </>
   );

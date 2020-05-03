@@ -7,7 +7,7 @@
  *
  */
 
-import React from 'react';
+import React, { memo } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
@@ -18,33 +18,42 @@ import Category from 'containers/Category/Loadable';
 import Search from 'containers/Search/Loadable';
 
 import { Classes } from '@blueprintjs/core';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 import GlobalStyle from '../../global-styles';
-import { AppWrapper, AppMain, MainSite } from './styled';
-import Header from '../../components/Header';
-import Nav from '../../components/Nav';
-import RightSide from '../../components/RightSide';
+import { AppWrapper } from './styled';
+import makeSelectApp from './selectors';
 
-export default function App() {
+export function App() {
   return (
     <AppWrapper className={`${Classes.DARK}`}>
-      <Header />
-      <Nav />
-      <AppMain>
-        <MainSite>
-          <Switch>
-            <Route exact path="/:lang" component={HomePage} />
-            <Route exact path="/:lang/:postID" component={Post} />
-            <Route exact path="/:lang/p/:pageID" component={Page} />
-            <Route exact path="/:lang/search/:key" component={Search} />
-            <Route exact path="/:lang/cat/:catID" component={Category} />
-            <Redirect to="/vi" />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </MainSite>
-        <RightSide />
-      </AppMain>
-
+      <Switch>
+        <Route exact path="/:lang(en|vi|fr)" component={HomePage} />
+        <Route exact path="/:lang(en|vi|fr)/:postID" component={Post} />
+        <Route exact path="/:lang(en|vi|fr)/p/:pageID" component={Page} />
+        <Route exact path="/:lang(en|vi|fr)/search/:key" component={Search} />
+        <Route exact path="/:lang(en|vi|fr)/cat/:catID" component={Category} />
+        <Redirect to="/vi" />
+        <Route component={NotFoundPage} />
+      </Switch>
       <GlobalStyle />
     </AppWrapper>
   );
 }
+
+App.propTypes = {};
+
+const mapStateToProps = createStructuredSelector({
+  app: makeSelectApp(),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+export default compose(withConnect, memo)(App);
