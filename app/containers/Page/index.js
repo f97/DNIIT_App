@@ -28,7 +28,7 @@ export function Page(props) {
   useInjectSaga({ key: 'page', saga });
 
   const { getPage, match, page: pageProps } = props;
-  const { page } = pageProps;
+  const { page, lang } = pageProps;
   useEffect(() => {
     getPage(match.params.lang, match.params.pageID);
   }, []);
@@ -38,7 +38,7 @@ export function Page(props) {
       {page && (
         <>
           <Header />
-          <Nav />
+          <Nav lang={lang} />
           <AppMain>
             <MainSite>
               <PageWrapper>

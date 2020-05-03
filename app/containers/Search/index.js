@@ -37,23 +37,23 @@ export function Search(props) {
   return (
     <>
       <Header />
-      <Nav />
+      <Nav lang={lang} keySearch={match.params.key} />
       <AppMain>
         <MainSite>
           <Helmet>
-            <title>Search</title>
+            <title>Search: {match.params.key}</title>
             <meta name="description" content="Description of Search" />
           </Helmet>
           <SearchWrapper>
             <SearchHeader>
-              Kết quả tìm kiếm bởi từ khoá <span>{match.params.key}</span>
+              {'You keyword: '} <span>{match.params.key}</span>
             </SearchHeader>
             {!requesting && posts.length !== 0 && (
               <ListPost posts={posts} lang={lang} />
             )}
 
             {!requesting && posts.length === 0 && (
-              <SearchNoti>Không có kết quả nào cho tìm kiếm</SearchNoti>
+              <SearchNoti>Your search yielded no results</SearchNoti>
             )}
           </SearchWrapper>
         </MainSite>

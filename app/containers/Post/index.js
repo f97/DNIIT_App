@@ -14,7 +14,7 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { FacebookProvider, Comments, ShareButton } from 'react-facebook';
-import { Spinner, Intent } from '@blueprintjs/core';
+import { Spinner, Intent, Icon } from '@blueprintjs/core';
 import { Link } from 'react-router-dom';
 import makeSelectPost from './selectors';
 import reducer from './reducer';
@@ -41,7 +41,7 @@ export function Post(props) {
   useInjectSaga({ key: 'post', saga });
 
   const { getPost, match, post: postProp } = props;
-  const { post, requesting } = postProp;
+  const { post, requesting, lang } = postProp;
 
   useEffect(() => {
     getPost(match.params.lang, match.params.postID);
@@ -52,7 +52,7 @@ export function Post(props) {
       {post && (
         <>
           <Header />
-          <Nav />
+          <Nav lang={lang} />
           <AppMain>
             <MainSite>
               <PostWrapper>
@@ -65,7 +65,9 @@ export function Post(props) {
                 ) : (
                   <>
                     <Categories>
-                      <Link to={`/${match.params.lang}/`}>Trang Chủ</Link>
+                      <Link to={`/${match.params.lang}/`}>
+                        <Icon icon="home" />
+                      </Link>
                       {post.category.map((cat) => (
                         <Link
                           key={cat.id}

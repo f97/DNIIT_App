@@ -14,7 +14,7 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { Link } from 'react-router-dom';
-import { Classes } from '@blueprintjs/core';
+import { Classes, Icon } from '@blueprintjs/core';
 import reducer from './reducer';
 import saga from './saga';
 import ListPost from '../../components/ListPost';
@@ -40,7 +40,7 @@ export function Category(props) {
   return (
     <>
       <Header />
-      <Nav />
+      <Nav lang={lang} />
       <AppMain>
         <MainSite>
           <Helmet>
@@ -49,7 +49,9 @@ export function Category(props) {
           </Helmet>
           <CatWrapper>
             <Categories className={requesting ? Classes.SKELETON : ''}>
-              <Link to={`/${lang}/`}>Trang Chủ</Link>
+              <Link to={`/${lang}/`}>
+                <Icon icon="home" />
+              </Link>
               <Link to={`/${lang}/cat/${cat.id}`}>{cat.name}</Link>
             </Categories>
             <ListPost posts={posts} lang={lang} isRequest={requesting} />

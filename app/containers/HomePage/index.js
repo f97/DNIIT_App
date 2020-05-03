@@ -28,7 +28,7 @@ import RightSide from '../../components/RightSide';
 
 const HomePage = (props) => {
   const { getPosts, match, homePage } = props;
-  const { posts, requesting } = homePage;
+  const { posts, requesting, lang } = homePage;
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
 
@@ -39,7 +39,7 @@ const HomePage = (props) => {
   return (
     <>
       <Header />
-      <Nav />
+      <Nav lang={lang} />
       <AppMain>
         <MainSite>
           <HomeWrapper>
