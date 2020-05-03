@@ -71,6 +71,11 @@ function Nav() {
         >
           <Button className="bp3-minimal" text="TUYỂN SINH" />
         </Popover>
+        <Button
+          text="THỜI SỰ"
+          minimal
+          onClick={() => history.push('/vi/cat/5eacce3e7a69800017631dca')}
+        />
         <Navbar.Divider />
         <InputGroup
           leftIcon="search"

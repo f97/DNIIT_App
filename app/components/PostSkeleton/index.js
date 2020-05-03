@@ -12,8 +12,8 @@ import { PostWrapper, Thumbnail, Title, Sumary, Content } from './styled';
 function PostSkeleton(props) {
   return (
     <>
-      {Array.from(Array(props.numberPost).keys()).map(() => (
-        <PostWrapper>
+      {Array.from(Array(props.numberPost).keys()).map((key) => (
+        <PostWrapper key={key}>
           <Thumbnail className={Classes.SKELETON}></Thumbnail>
           <Content>
             <Title className={Classes.SKELETON}>

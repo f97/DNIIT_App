@@ -21,6 +21,10 @@ import ListPost from '../../components/ListPost';
 import { getPostsAction } from './actions';
 import makeSelectCategory from './selectors';
 import { CatWrapper, Categories } from './styled';
+import Header from '../../components/Header';
+import { AppMain, MainSite } from '../App/styled';
+import Nav from '../../components/Nav';
+import RightSide from '../../components/RightSide';
 
 export function Category(props) {
   useInjectReducer({ key: 'category', reducer });
@@ -34,21 +38,26 @@ export function Category(props) {
   }, []);
 
   return (
-    <div>
-      <>
-        <Helmet>
-          <title>{cat.name}</title>
-          <meta name="description" content={cat.name} />
-        </Helmet>
-        <CatWrapper>
-          <Categories className={requesting ? Classes.SKELETON : ''}>
-            <Link to={`/${lang}/`}>Trang Chủ</Link>
-            <Link to={`/${lang}/cat/${cat.id}`}>{cat.name}</Link>
-          </Categories>
-          <ListPost posts={posts} lang={lang} isRequest={requesting} />
-        </CatWrapper>
-      </>
-    </div>
+    <>
+      <Header />
+      <Nav />
+      <AppMain>
+        <MainSite>
+          <Helmet>
+            <title>{cat.name}</title>
+            <meta name="description" content={cat.name} />
+          </Helmet>
+          <CatWrapper>
+            <Categories className={requesting ? Classes.SKELETON : ''}>
+              <Link to={`/${lang}/`}>Trang Chủ</Link>
+              <Link to={`/${lang}/cat/${cat.id}`}>{cat.name}</Link>
+            </Categories>
+            <ListPost posts={posts} lang={lang} isRequest={requesting} />
+          </CatWrapper>
+        </MainSite>
+        <RightSide />
+      </AppMain>
+    </>
   );
 }
 
