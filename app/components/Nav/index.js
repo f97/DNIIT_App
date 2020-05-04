@@ -154,9 +154,18 @@ function Nav(props) {
         <Popover
           content={
             <Menu>
-              <MenuItem text={menuJson[2][1]} />
-              <MenuItem text={menuJson[2][2]} />
-              <MenuItem text={menuJson[2][3]} />
+              <MenuItem
+                text={menuJson[2][1]}
+                onClick={() => openPage('5eb01a4d4891a00017b90da5')}
+              />
+              <MenuItem
+                text={menuJson[2][2]}
+                onClick={() => openPage('5eb01af94891a00017b90da6')}
+              />
+              <MenuItem
+                text={menuJson[2][3]}
+                onClick={() => openPage('5eb01b5c4891a00017b90da7')}
+              />
             </Menu>
           }
           position={Position.BOTTOM}
