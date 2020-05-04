@@ -29,9 +29,10 @@ export function Page(props) {
 
   const { getPage, match, page: pageProps } = props;
   const { page, lang } = pageProps;
+
   useEffect(() => {
     getPage(match.params.lang, match.params.pageID);
-  }, [match.params.pageID]);
+  }, [match.params.pageID, match.params.lang]);
 
   return (
     <>
@@ -48,7 +49,7 @@ export function Page(props) {
                 </Helmet>
                 <PageHeader>
                   <PageTitle>{page.title}</PageTitle>
-                  <p>Ngày Cập Nhật: {page.updatedAt}</p>
+                  <p>Updated At: {page.updatedAt}</p>
                 </PageHeader>
                 <PageContent>
                   <div
@@ -59,7 +60,7 @@ export function Page(props) {
                 </PageContent>
               </PageWrapper>
             </MainSite>
-            <RightSide />
+            <RightSide lang={lang} type="page" id={match.params.pageID} />
           </AppMain>
         </>
       )}

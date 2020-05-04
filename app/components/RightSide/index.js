@@ -7,14 +7,24 @@
 import React, { memo } from 'react';
 import { FacebookProvider, Page } from 'react-facebook';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { RightWrapper, LanguageBox } from './styled';
-// import PropTypes from 'prop-types';
 
-function RightSide() {
+function RightSide(props) {
+  const { type, id } = props;
+  let openLink = '';
+  if (type === 'post') {
+    openLink = `/${id}`;
+  } else if (type === 'page') {
+    openLink = `/p/${id}`;
+  } else if (type === 'category') {
+    openLink = `/cat/${id}`;
+  }
+
   return (
     <RightWrapper>
       <LanguageBox>
-        <Link to="/en">
+        <Link to={`/en${openLink}`}>
           <img
             className="language-icon"
             typeof="foaf:Image"
@@ -25,7 +35,7 @@ function RightSide() {
             title="English"
           />
         </Link>
-        <Link to="/vi">
+        <Link to={`/vi${openLink}`}>
           <img
             className="language-icon"
             typeof="foaf:Image"
@@ -36,7 +46,7 @@ function RightSide() {
             title="Tiếng Việt"
           />
         </Link>
-        <Link to="/fr">
+        <Link to={`/fr${openLink}`}>
           <img
             className="language-icon"
             typeof="foaf:Image"
@@ -55,6 +65,9 @@ function RightSide() {
   );
 }
 
-RightSide.propTypes = {};
+RightSide.propTypes = {
+  type: PropTypes.string,
+  id: PropTypes.string,
+};
 
 export default memo(RightSide);

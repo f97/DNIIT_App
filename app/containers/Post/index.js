@@ -45,7 +45,7 @@ export function Post(props) {
 
   useEffect(() => {
     getPost(match.params.lang, match.params.postID);
-  }, []);
+  }, [match.params.lang]);
 
   return (
     <>
@@ -79,7 +79,7 @@ export function Post(props) {
                     </Categories>
                     <PostHeader>
                       <PostTitle>{post.title}</PostTitle>
-                      <p>Ngày Cập Nhật: {post.updatedAt}</p>
+                      <p>Updated At: {post.updatedAt}</p>
                     </PostHeader>
                     <PostContent>
                       <PostExcerpt>{post.excerpt}</PostExcerpt>
@@ -105,7 +105,7 @@ export function Post(props) {
                 )}
               </PostWrapper>
             </MainSite>
-            <RightSide />
+            <RightSide lang={lang} type="post" id={match.params.postID} />
           </AppMain>
         </>
       )}

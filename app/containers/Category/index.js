@@ -35,7 +35,7 @@ export function Category(props) {
 
   useEffect(() => {
     getPosts(match.params.lang, match.params.catID);
-  }, []);
+  }, [match.params.lang]);
 
   return (
     <>
@@ -57,7 +57,7 @@ export function Category(props) {
             <ListPost posts={posts} lang={lang} isRequest={requesting} />
           </CatWrapper>
         </MainSite>
-        <RightSide />
+        <RightSide lang={lang} type="category" id={match.params.catID} />
       </AppMain>
     </>
   );
