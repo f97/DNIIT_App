@@ -24,6 +24,7 @@ import { createStructuredSelector } from 'reselect';
 import GlobalStyle from '../../global-styles';
 import { AppWrapper } from './styled';
 import makeSelectApp from './selectors';
+import Footer from '../../components/Footer';
 
 export function App() {
   return (
@@ -37,6 +38,7 @@ export function App() {
         <Redirect to="/vi" />
         <Route component={NotFoundPage} />
       </Switch>
+      <Footer />
       <GlobalStyle />
     </AppWrapper>
   );

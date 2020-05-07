@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const RightWrapper = styled.div`
-  width: 30%;
+  width: 31%;
   display: inline-block;
   background: #fff;
 `;
