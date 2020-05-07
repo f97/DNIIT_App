@@ -11,4 +11,5 @@ export const AppMain = styled.div`
 
 export const MainSite = styled.div`
   width: 70%;
+  background: #fff;
 `;
