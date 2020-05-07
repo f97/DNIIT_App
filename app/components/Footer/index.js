@@ -12,6 +12,7 @@ const FooterWrap = styled.div`
   width: 100%;
   background: #ffffff;
   border-top: 1px solid #384b59;
+  text-align: center;
 `;
 
 const CopyRight = styled.div`
